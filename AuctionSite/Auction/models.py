@@ -10,6 +10,7 @@ class Customer(models.Model):
     phone = models.CharField(max_length=200, null=True)
     email = models.CharField(max_length=200, null=True)
     date_created = models.DateField(auto_now_add=True, null=True)
+    profile_pic = models.ImageField(null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -48,14 +49,13 @@ class Item(models.Model):
     date_created = models.DateField(auto_now_add=True, null=True)
     initialBid = models.IntegerField(default=0, null=False)
     tags = models.ManyToManyField(Tag)
+    item_pic = models.ImageField(null=True, blank=True)
 
     def __str__(self):
         return self.name
 
 
 class Auction(models.Model):
-    seller = models.OneToOneField(
-        Seller, null=True, blank=True, on_delete=models.CASCADE)
     item = models.ForeignKey(Item, null=True, on_delete=models.SET_NULL)
     duration = models.IntegerField()
     finalbid = models.IntegerField(default=0)
