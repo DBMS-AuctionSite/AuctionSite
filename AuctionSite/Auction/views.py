@@ -44,6 +44,13 @@ def registerPage(request):
     return render(request, 'Auction/register.html', context)
 
 
+@login_required(login_url='login')
 def logoutUser(request):
     logout(request)
     return redirect('login')
+
+@login_required(login_url='login')
+def profilePage(request):
+    context={}
+    return render(request, 'Auction/profile.html',context)
+

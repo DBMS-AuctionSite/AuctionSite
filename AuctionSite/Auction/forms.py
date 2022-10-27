@@ -13,29 +13,29 @@ class CreateUserForm(UserCreationForm):
         fields = ['username', 'email', 'password1', 'password2']
 
 
-class CustomerForm(ModelForm):
-    class Meta:
-        model = Customer
-        fields = '__all__'
-        exclude = ['user']
+# class CustomerForm(ModelForm):
+#     class Meta:
+#         model = Customer
+#         fields = '__all__'
+#         exclude = ['user']
 
 
-class SellerForm(ModelForm):
-    class Meta:
-        model = Customer
-        fields = '__all__'
-        exclude = ['user']
+# class SellerForm(ModelForm):
+#     class Meta:
+#         model = Customer
+#         fields = '__all__'
+#         exclude = ['user']
 
 
-class AuctionCreationForm(ModelForm):
-    class Meta:
-        model = Auction
-        fields = '__all__'
-        exclude = ['seller', 'finalbid', 'soldto']
+# class AuctionCreationForm(ModelForm):
+#     class Meta:
+#         model = Auction
+#         fields = '__all__'
+#         exclude = ['seller', 'finalbid', 'soldto']
 
 
-class ItemCreationForm(ModelForm):
-    class Meta:
-        model = Customer
-        fields = '__all__'
-        exclude = ['seller', 'date_created', 'tags']
+# class ItemCreationForm(ModelForm):
+#     class Meta:
+#         model = Customer
+#         fields = '__all__'
+#         exclude = ['seller', 'date_created', 'tags']
