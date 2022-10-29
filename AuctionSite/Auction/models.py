@@ -36,7 +36,7 @@ class Item(models.Model):
     minimum_price = models.PositiveIntegerField(default=0)
     current_bid = models.PositiveBigIntegerField(blank=True, null=True)
     duration = models.PositiveBigIntegerField(default=8)
-    item_pic = models.ImageField(null=True, blank=True)
+    item_pic = models.ImageField(null=True, blank=True, upload_to="images/")
 
     def __str__(self):
         return self.name

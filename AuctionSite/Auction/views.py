@@ -62,7 +62,7 @@ def profilePage(request):
 def sellPage(request):
     form = ItemCreationForm()
     if request.method == 'POST':
-        form = ItemCreationForm(request.POST)
+        form = ItemCreationForm(request.POST, request.FILES)
         post = form.save(commit=False)
         post.seller = request.user
         post.save()

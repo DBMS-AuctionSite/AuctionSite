@@ -2,13 +2,26 @@
 {%block title%} Sell {%endblock%}
 {% load crispy_forms_tags %}
 {%block content%}
-<h2>Add Item to Auction</h2>
-<div class="mb-3">
-<form method="POST">
-  {% csrf_token %}
-  {{form|crispy}}
-  <button type="submit" class="btn btn-outline-dark">Add to Auction</button>
-</form>
+<div class="container mt-5">
+
+  <div class="container text-center mt-5">
+    <h2>Add Item to Auction</h2>
+  </div>
+
+
+  <div class="mb-3">
+    <div class="form-group">
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form|crispy}}
+        <div class="container text-center mt-5">
+          <button type="submit" class="btn btn-outline-dark">Add to Auction</button>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
 
+
+  
 {%endblock%}

@@ -11,7 +11,8 @@ urlpatterns = [
     path('profile/', views.profilePage, name="profile"),
     path('sell/', views.sellPage, name="sell")
 
-]
+]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
