@@ -13,6 +13,21 @@ class CreateUserForm(UserCreationForm):
         fields = ['username', 'email', 'password1', 'password2']
 
 
+class ItemCreationForm(ModelForm):
+    class Meta:
+        model = Item
+        fields = '__all__'
+        exclude = ['seller', 'buyer', 'current_bid', 'date_created', 'tags']
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'category': forms.Select(attrs={'class': 'form-control'}),
+            'description': forms.TextInput(attrs={'class': 'form-control'}),
+            'minimum_price': forms.NumberInput(attrs={'class': 'form-control'}),
+            'duration': forms.NumberInput(attrs={'class': 'form-control'}),
+            # 'item_pic': forms.ImageField(attrs={'class': 'form-control'}),
+
+        }
+
 # class CustomerForm(ModelForm):
 #     class Meta:
 #         model = Customer
@@ -32,10 +47,3 @@ class CreateUserForm(UserCreationForm):
 #         model = Auction
 #         fields = '__all__'
 #         exclude = ['seller', 'finalbid', 'soldto']
-
-
-# class ItemCreationForm(ModelForm):
-#     class Meta:
-#         model = Customer
-#         fields = '__all__'
-#         exclude = ['seller', 'date_created', 'tags']

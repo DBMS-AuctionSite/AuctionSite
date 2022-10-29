@@ -4,6 +4,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import *
+
+
 # Create your views here.
 
 
@@ -49,8 +51,23 @@ def logoutUser(request):
     logout(request)
     return redirect('login')
 
+
 @login_required(login_url='login')
 def profilePage(request):
-    context={}
-    return render(request, 'Auction/profile.html',context)
+    context = {}
+    return render(request, 'Auction/profile.html', context)
 
+
+@login_required(login_url='login')
+def sellPage(request):
+    form = ItemCreationForm()
+    if request.method == 'POST':
+        form = ItemCreationForm(request.POST)
+        post = form.save(commit=False)
+        post.seller = request.user
+        post.save()
+        messages.success(request, f"{post.name} was added to the auction")
+        return redirect("/")
+
+    context = {'form': form}
+    return render(request, 'Auction/sell.html', context)
