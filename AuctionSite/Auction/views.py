@@ -9,33 +9,16 @@ from .models import *
 # Create your views here.
 
 
-@login_required(login_url='login')
+# @login_required(login_url='login')
 def home(request):
     context = {}
     return render(request, "Auction/home.html", context)
 
 
-def loginPage(request):
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-
-        user = authenticate(request, username=username, password=password)
-
-        if user is not None:
-            login(request, user)
-            return redirect('home')
-        else:
-            messages.info(request, 'Username or password is incorrect')
-
-    context = {}
-    return render(request, 'Auction/login.html', context)
-
-
 def registerPage(request):
-    form = CreateUserForm()
+    form = RegistrationForm()
     if request.method == 'POST':
-        form = CreateUserForm(request.POST)
+        form = RegistrationForm(request.POST)
         if form.is_valid():
             user = form.save()
             username = form.cleaned_data.get('username')
@@ -43,7 +26,7 @@ def registerPage(request):
             messages.success(request, 'Account was created for ' + username)
             return redirect('login')
     context = {'form': form}
-    return render(request, 'Auction/register.html', context)
+    return render(request, 'registration/register.html', context)
 
 
 @login_required(login_url='login')
