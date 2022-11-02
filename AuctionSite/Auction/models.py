@@ -40,3 +40,11 @@ class Item(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Bid(models.Model):
+    Item = models.ForeignKey(Item, on_delete=models.CASCADE)
+    Bidder = models.ForeignKey(User, on_delete=models.CASCADE)
+    Bid = models.PositiveIntegerField()
+    # for status True: winning
+    Status = models.BooleanField()
