@@ -11,7 +11,9 @@ from .models import *
 
 # @login_required(login_url='login')
 def home(request):
-    context = {}
+    items = Item.objects.all()
+    print(len(items))
+    context = {'items':items}
     return render(request, "Auction/home.html", context)
 
 
