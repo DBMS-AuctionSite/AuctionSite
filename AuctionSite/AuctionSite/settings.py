@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'widget_tweaks',
     'crispy_forms',
     'crispy_bootstrap5',
     'django.contrib.admin',
@@ -61,7 +62,7 @@ ROOT_URLCONF = 'AuctionSite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,"Auction/templates/Auction")], 
+        'DIRS': [os.path.join(BASE_DIR, "Auction/templates/Auction")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -132,9 +133,8 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
-LOGIN_REDIRECT_URL= "/"
-LOGOUT_REDIRECT_URL= "/"
-
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/"
 
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media ')

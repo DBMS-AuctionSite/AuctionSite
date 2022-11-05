@@ -1,10 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from .forms import *
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import *
-
+import json
 
 # Create your views here.
 
@@ -13,7 +13,7 @@ from .models import *
 def home(request):
     items = Item.objects.all()
     print(len(items))
-    context = {'items':items}
+    context = {'items': items}
     return render(request, "Auction/home.html", context)
 
 
@@ -56,3 +56,25 @@ def sellPage(request):
 
     context = {'form': form}
     return render(request, 'Auction/sell.html', context)
+
+
+def add_bid(request, pk):
+    order = Item.objects.get(id=pk)
+    current_bid = order.current_bid
+    if request.method == "POST":
+        form = BidForm(request.POST, instance=order)
+        if form.is_valid():
+            bid = int(form.cleaned_data['current_bid'])
+            if (current_bid == None and bid >= order.minimum_price):
+                form.save()
+            elif (bid >= order.minimum_price and bid > current_bid):
+                form.save()
+            else:
+                messages.error(request, "Please enter a valid bid")
+            return HttpResponse(
+                status=204)
+    else:
+        form = BidForm(instance=order)
+    return render(request, 'bid_form.html', {
+        'form': form,
+    })

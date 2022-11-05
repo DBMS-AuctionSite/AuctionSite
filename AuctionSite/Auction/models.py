@@ -17,8 +17,10 @@ class Profile(models.Model):
 
 
 class Item(models.Model):
-    seller = models.ForeignKey(User, null=True, related_name='seller', on_delete=models.CASCADE)
-    buyer = models.ForeignKey(User, null=True, related_name='buyer', blank=True, on_delete=models.SET_NULL)
+    seller = models.ForeignKey(
+        User, null=True, related_name='seller', on_delete=models.CASCADE)
+    buyer = models.ForeignKey(
+        User, null=True, related_name='buyer', blank=True, on_delete=models.SET_NULL)
 
     CATEGORY = (
         ('Electronics', 'Electronics'),
