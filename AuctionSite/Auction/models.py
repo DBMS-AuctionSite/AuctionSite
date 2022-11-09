@@ -36,7 +36,7 @@ class Item(models.Model):
     description = models.CharField(max_length=200, null=True, blank=True)
     date_created = models.DateField(auto_now_add=True, null=True)
     minimum_price = models.PositiveIntegerField(default=0)
-    current_bid = models.PositiveBigIntegerField(blank=True, null=True)
+    current_bid = models.PositiveBigIntegerField(blank=True, null=True, default=0)
     duration = models.PositiveBigIntegerField(default=8)
     item_pic = models.ImageField(null=True, blank=True, upload_to="images/")
 

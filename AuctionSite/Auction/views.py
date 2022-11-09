@@ -12,7 +12,7 @@ import json
 # @login_required(login_url='login')
 def home(request):
     items = Item.objects.all()
-    print(len(items))
+    print(len(items)) #console output for debugging
     context = {'items': items}
     return render(request, "Auction/home.html", context)
 
@@ -67,12 +67,16 @@ def add_bid(request, pk):
             bid = int(form.cleaned_data['current_bid'])
             if (current_bid == None and bid >= order.minimum_price):
                 form.save()
+
             elif (bid >= order.minimum_price and bid > current_bid):
                 form.save()
+
             else:
                 messages.error(request, "Please enter a valid bid")
+
             return HttpResponse(
                 status=204)
+        # return redirect("/")
     else:
         form = BidForm(instance=order)
     return render(request, 'bid_form.html', {
